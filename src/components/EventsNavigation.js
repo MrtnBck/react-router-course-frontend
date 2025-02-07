@@ -1,4 +1,6 @@
-import classes from './EventsNavigation.module.css';
+import classes from "./EventsNavigation.module.css";
+
+import { Outlet } from "react-router-dom";
 
 function EventsNavigation() {
   return (
@@ -13,6 +15,7 @@ function EventsNavigation() {
           </li>
         </ul>
       </nav>
+      <Outlet />
     </header>
   );
 }
