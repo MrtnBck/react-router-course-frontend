@@ -1,22 +1,22 @@
-import { Link } from "react-router-dom";
+import EventsList from "../components/EventsList";
 
-const DUMMY_EVENTS = [
-  { id: "ev0", title: "Learn React Router", description: "My react skills will go to the moon" },
-  { id: "ev1", title: "Work", description: "Beat friday at my workplace" },
-  { id: "ev2", title: "Cleanup", description: "Cleanup my room" },
-  { id: "ev3", title: "Immerse in Friday night", description: "Dance in Forelle" },
-];
-
+import { useLoaderData } from "react-router-dom";
 export default function EventsPage() {
-  return (
-    <div>
-      <h1>Events Page</h1>
+  const events = useLoaderData();
 
-      <ul>
-        {DUMMY_EVENTS.map((event) => {
-          return <Link to={event.id}>{event.title}</Link>;
-        })}
-      </ul>
-    </div>
+  return (
+    <>
+      <EventsList events={events} />
+    </>
   );
+}
+
+export async function loader() {
+  const response = await fetch("http://localhost:8080/events");
+  if (!response.ok) {
+    //...
+  } else {
+    const resData = await response.json();
+    return resData.events;
+  }
 }
