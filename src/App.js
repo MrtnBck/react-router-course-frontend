@@ -30,15 +30,19 @@ import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./components/Root";
 import EventsRootLayout from "./components/EventsRoot";
 
+import ErrorPage from "./pages/Error";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />, //route level error element
     children: [
       { index: true, element: <HomePage /> },
       {
         path: "events",
         element: <EventsRootLayout />,
+
         children: [
           {
             index: true,
