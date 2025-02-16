@@ -16,7 +16,6 @@ export async function loader({ request, params }) {
   if (!response.ok) {
     return new Response(JSON.stringify({ message: "Could not fetch details for selected event." }), {
       status: 500,
-      headers: { "Content-Type": "application/json" },
     });
   } else {
     return response;
