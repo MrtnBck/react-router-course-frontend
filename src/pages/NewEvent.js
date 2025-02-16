@@ -23,6 +23,11 @@ export async function action({ request, params }) {
     body: JSON.stringify(eventData),
   });
 
+  //HTTP: 422 Unprocessable Content
+  if (response.status === 422) {
+    return response;
+  }
+
   if (!response.ok) {
     return new Response(JSON.stringify({ message: "Could not save event." }), {
       status: 500,
